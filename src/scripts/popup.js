@@ -24,7 +24,7 @@ var template = (data) => {
 }
 var renderMessage = (message) => {
   var displayContainer = document.getElementById("display-container");
-  displayContainer.innerHTML = `<p class='message'>${message}</p>`;
+  displayContainer.innerHTML = `<div style="user-select: text" class='message'>${message}</div>`;
 }
 
 var renderBookmark = (data) => {
@@ -37,10 +37,10 @@ var renderBookmark = (data) => {
   }
 }
 
-ext.tabs.query({active: true, currentWindow: true}, function(tabs) {
-  var activeTab = tabs[0];
-  chrome.tabs.sendMessage(activeTab.id, { action: 'process-page' }, renderBookmark);
-});
+// ext.tabs.query({active: true, currentWindow: true}, function(tabs) {
+//   var activeTab = tabs[0];
+//   chrome.tabs.sendMessage(activeTab.id, { action: 'process-page' }, renderBookmark);
+// });
 
 popup.addEventListener("click", function(e) {
   if(e.target && e.target.matches("#save-btn")) {
@@ -56,8 +56,12 @@ popup.addEventListener("click", function(e) {
   }
 });
 
-var optionsLink = document.querySelector(".js-options");
+var optionsLink = document.getElementById("translate-btn");
+optionsLink.style.color = "Red"
 optionsLink.addEventListener("click", function(e) {
+  let input = document.getElementById("input-textarea")
+  let value = input.value
+  renderMessage(value)
   e.preventDefault();
-  ext.tabs.create({'url': ext.extension.getURL('options.html')});
+  // ext.tabs.create({'url': ext.extension.getURL('options.html')});
 })

@@ -10,6 +10,19 @@ body, html {
 #app {
   padding: 20px 20px;
   background: $white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#input-textarea {
+  flex: 1;
+  padding: 10px 0;
+  font: 15px;
+}
+
+#translate-btn {
+  text-decoration: underline;
 }
 
 footer {
@@ -26,9 +39,8 @@ footer {
 }
 
 .popup-content {
-  min-width: 220px;
+  min-width: 375px;
   min-height: 100px;
-  max-width: 350px;
 }
 
 .app-name {
